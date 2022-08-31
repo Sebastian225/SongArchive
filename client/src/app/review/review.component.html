@@ -1,0 +1,42 @@
+<div *ngIf="review">
+    <p><b>{{review.title}}</b></p>
+    <p>{{review.description}}</p>
+    <p>{{review.rating | rating}}</p>
+    <a routerLink="/album/{{review.album.id}}" routerLinkActive="active">{{review.album.title}}</a>
+    <p>{{review.user.name}}</p>
+
+    <div *ngIf= !isInEditMode()>
+        <button (click)="edit()" mat-button>edit</button>
+    </div>
+</div>
+
+<div *ngIf="isEditable">
+    <mat-form-field appearance="fill">
+        <mat-label for="title">Title</mat-label>
+        <input id="title" [(ngModel)]="editingItem.title" type="text" matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appereance="fill">
+        <mat-label for="description">Description</mat-label>
+        <textarea id="description" [(ngModel)]="editingItem.description" type="textarea" matInput></textarea>
+    </mat-form-field>
+    <br>
+    <label>Rating</label>
+    <br>
+    <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="1"
+        step="1"
+        min="0"
+        max="100"
+        aria-label="rating"
+        [(ngModel)]="editingItem.rating"></mat-slider>
+    <br>
+    <!-- <button (click)="saveEdit()">Save edits</button> -->
+  </div>
+
+  <div *ngIf= isInEditMode()>
+    <button (click)="edit()" mat-button>edit</button>
+    <button (click)="delete()" mat-button>delete</button>
+  </div>

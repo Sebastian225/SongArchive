@@ -1,0 +1,30 @@
+<form [formGroup]="albumForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label for="title">Title</mat-label>
+      <input id="title" type="text" formControlName="title" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label for="year">Year</mat-label>
+      <input id="year" type="text" formControlName="year" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label for="image">Image path</mat-label>
+      <input id="image" type="text" formControlName="image" matInput>
+    </mat-form-field>
+
+    <button type="submit" mat-button>Add album</button>
+</form>
+
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label for="songs">Add a song</mat-label>
+    <input id="songs" type="text" [(ngModel)]="crtSong" matInput>
+  </mat-form-field>
+
+  <button (click)="addSong()" mat-button>Add song</button>
+  <ol *ngIf="songs">
+    <li *ngFor="let song of songs"><app-song [title]="song.title" (deleteSongEvent)="deleteSong($event)" (editSongEvent)="editSong($event)"></app-song></li>
+  </ol>
+</div>

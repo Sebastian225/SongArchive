@@ -1,0 +1,4 @@
+<h2>Albums</h2>
+<div *ngFor="let album of albumList">
+    <a routerLink="/album/{{album.id}}" routerLinkActive="active">{{album.title}}</a>
+</div>

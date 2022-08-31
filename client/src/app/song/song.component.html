@@ -1,0 +1,9 @@
+<span *ngIf="!isEditing">{{title}}</span>
+
+<mat-form-field *ngIf="isEditing" appearance="fill">
+    <mat-label for="song">title</mat-label>
+    <input id="song" type="text" [(ngModel)]="songName" matInput>
+</mat-form-field>
+
+<button (click)="editSong()" mat-button>Edit</button>
+<button (click)="deleteSong()" mat-button>Delete</button>

@@ -1,0 +1,15 @@
+<div *ngIf="reviews else elseTitle">
+    <h2>Reviews for {{reviews[0].album.title}}</h2>
+    <div *ngFor="let review of reviews">
+        <p><b>{{review.title}}</b></p>
+        <p>{{review.description}}</p>
+        <p>{{review.rating | rating}}</p>
+        <p>{{review.user.name}}</p>
+        <a routerLink="/review/{{review.id}}" routerLinkActive="active">Read more</a>
+        <hr>
+    </div>
+</div>
+
+<ng-template #elseTitle>
+    <h2>No reviews yet!</h2>
+</ng-template>

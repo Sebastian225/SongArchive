@@ -1,0 +1,30 @@
+<form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+        <mat-label>Album</mat-label>
+        <mat-select formControlName="album_name">
+          <mat-option *ngFor="let album of albums" value="{{album.title}}">{{album.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label for="title">Title</mat-label>
+      <input id="title" type="text" formControlName="title" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label for="description">Description</mat-label>
+      <textarea id="description" type="textarea" formControlName="description" matInput></textarea>
+    </mat-form-field>
+
+    <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="1"
+        step="1"
+        min="0"
+        max="100"
+        aria-label="rating"
+        formControlName="rating"></mat-slider>
+
+    <button type="submit" mat-button>Post</button>
+</form>
